@@ -1,0 +1,496 @@
+{% extends 'admin/bedsbase.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<style>
+button {
+  font-family: 'Open Sans';
+
+}
+.bt {
+
+	width: 225px;
+}
+</style>
+<div class="main">
+	<div class="main-inner">
+	    <div class="container">
+	      <div class="row">
+	      	<div class="span12">
+	      		<div class="widget ">
+	      			<div class="widget-header">
+	      				<i class="icon-medkit"></i>
+	      				<h3>Manage Beds</h3>
+	  					</div> <!-- /widget-header -->
+					<div class="widget-content">
+						<div class="tabbable">
+							<ul class="nav nav-tabs">
+							  <li class="active">
+							    <a href="#viewbeds" data-toggle="tab">View Beds</a>
+							  </li>
+							  <li><a href="#addbed" data-toggle="tab">Add Bed</a></li>
+							</ul>
+
+							<br>
+
+							<div class="tab-content" >
+                <!--Add patient --->
+                <!---View Patients -->
+								<div class="tab-pane active" id="viewbeds"  >
+
+										<fieldset>
+
+											<div class="control-group">
+												 <h3><i class="icon-eye-open"></i> View Beds</h3>
+												 <br>
+
+												<div class="controls">
+													<div class="container">
+
+														<div class ="row">
+															<div class = "span3">
+																<div class="widget widget-table action-table" >
+																	<div class="widget-header" > <i class="icon-user"></i>
+																		<h3>Bed #1</h3>
+
+																	</div>
+																	<!-- /widget-header -->
+																	<div class="widget-content" align = "center" id="bed">
+																		<img src="{% static 'img/none.png'%}"/ >
+																		<table class="table " >
+																			<thead >
+																				<tr>
+																					<th>NAME</th>
+																					<th>SANDEL, MHARJORIE C.</th>
+																				</tr>
+																			</thead>
+																			<tfoot>
+																				<tr>
+																					<th>Threshold</th>
+																					<th><a href="#myModal" role="button" data-toggle="modal">Edit</a>
+																						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																							<div class="modal-header">
+																								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																								<h3 id="myModalLabel">Edit Threshold</h3>
+																							</div>
+																							<div class="modal-body">
+																								<div class="slidecontainer">
+																								<p>Patient: SANDEL, MHARJORIE C.</p>
+																									<table class="table " >
+																										<thead >
+																											<tr>
+																												<th></th>
+																												<th></th>
+																												<th></th>
+																												<th></th>
+																											</tr>
+																										</thead>
+																										<tbody>
+																											<tr>
+																												<td>Heart Rate</td>
+																												<td>MIN</td>
+																												<td>  <input type="range" min="1" max="100" value="50" class="slider" id="minheartrateslide"></td>
+																												<td><span id="minhr"></span></td>
+																											</tr>
+																											<tr>
+																												<td></td>
+																												<td>MAX</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="maxheartrateslide"></td>
+																												<td><span id="maxhr"></span></td>
+																											</tr>
+																											<tr>
+																												<td>Temperature</td>
+																												<td>MIN</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="mintemperatureslide"></td>
+																												<td><span id="mint"></span></td>
+																											</tr>
+																											<tr>
+																												<td></td>
+																												<td>MAX</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="maxtemperatureslide"></td>
+																												<td><span id="maxt"></span></td>
+																											</tr>
+																										</tbody>
+																								</table>
+																								</div>
+																							</div>
+																							<div class="modal-footer">
+																								<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+																								<button class="btn btn-primary">Save changes</button>
+																							</div>
+																						</div>
+																					</th>
+																			</tr>
+																		</tfoot>
+																			<tbody>
+																				<tr>
+																					<td>Heart Rate</td>
+																					<td>70 bpm</td>
+																				</tr>
+																				<tr>
+																					<td>Temperature</td>
+																					<td>37 C</td>
+																				</tr>
+																				<tr>
+																					<td>Position</td>
+																					<td>Back</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<div class = "span3">
+																<div class="widget widget-table action-table" >
+																	<div class="widget-header" > <i class="icon-user"></i>
+																		<h3>Bed #1</h3>
+
+																	</div>
+																	<!-- /widget-header -->
+																	<div class="widget-content" align = "center" id="bed">
+																		<img src="{% static 'img/none.png'%}"/ >
+																		<table class="table " >
+																			<thead >
+																				<tr>
+																					<th>NAME</th>
+																					<th>SANDEL, MHARJORIE C.</th>
+																				</tr>
+																			</thead>
+																			<tfoot>
+																				<tr>
+																					<th>Threshold</th>
+																					<th><a href="#myModal" role="button" data-toggle="modal">Edit</a>
+																						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																							<div class="modal-header">
+																								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																								<h3 id="myModalLabel">Edit Threshold</h3>
+																							</div>
+																							<div class="modal-body">
+																								<div class="slidecontainer">
+																								<p>Patient: SANDEL, MHARJORIE C.</p>
+																									<table class="table " >
+																										<thead >
+																											<tr>
+																												<th></th>
+																												<th></th>
+																												<th></th>
+																												<th></th>
+																											</tr>
+																										</thead>
+																										<tbody>
+																											<tr>
+																												<td>Heart Rate</td>
+																												<td>MIN</td>
+																												<td>  <input type="range" min="1" max="100" value="50" class="slider" id="minheartrateslide"></td>
+																												<td><span id="minhr"></span></td>
+																											</tr>
+																											<tr>
+																												<td></td>
+																												<td>MAX</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="maxheartrateslide"></td>
+																												<td><span id="maxhr"></span></td>
+																											</tr>
+																											<tr>
+																												<td>Temperature</td>
+																												<td>MIN</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="mintemperatureslide"></td>
+																												<td><span id="mint"></span></td>
+																											</tr>
+																											<tr>
+																												<td></td>
+																												<td>MAX</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="maxtemperatureslide"></td>
+																												<td><span id="maxt"></span></td>
+																											</tr>
+																										</tbody>
+																								</table>
+																								</div>
+																							</div>
+																							<div class="modal-footer">
+																								<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+																								<button class="btn btn-primary">Save changes</button>
+																							</div>
+																						</div>
+																					</th>
+																			</tr>
+																		</tfoot>
+																			<tbody>
+																				<tr>
+																					<td>Heart Rate</td>
+																					<td>70 bpm</td>
+																				</tr>
+																				<tr>
+																					<td>Temperature</td>
+																					<td>37 C</td>
+																				</tr>
+																				<tr>
+																					<td>Position</td>
+																					<td>Back</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+															<div class = "span3">
+																<div class="widget widget-table action-table" >
+																	<div class="widget-header" > <i class="icon-user"></i>
+																		<h3>Bed #1</h3>
+
+																	</div>
+																	<!-- /widget-header -->
+																	<div class="widget-content" align = "center" id="bed">
+																		<img src="{% static 'img/none.png'%}"/ >
+																		<table class="table " >
+																			<thead >
+																				<tr>
+																					<th>NAME</th>
+																					<th>SANDEL, MHARJORIE C.</th>
+																				</tr>
+																			</thead>
+																			<tfoot>
+																				<tr>
+																					<th>Threshold</th>
+																					<th><a href="#myModal" role="button" data-toggle="modal">Edit</a>
+																						<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																							<div class="modal-header">
+																								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																								<h3 id="myModalLabel">Edit Threshold</h3>
+																							</div>
+																							<div class="modal-body">
+																								<div class="slidecontainer">
+																								<p>Patient: SANDEL, MHARJORIE C.</p>
+																									<table class="table " >
+																										<thead >
+																											<tr>
+																												<th></th>
+																												<th></th>
+																												<th></th>
+																												<th></th>
+																											</tr>
+																										</thead>
+																										<tbody>
+																											<tr>
+																												<td>Heart Rate</td>
+																												<td>MIN</td>
+																												<td>  <input type="range" min="1" max="100" value="50" class="slider" id="minheartrateslide"></td>
+																												<td><span id="minhr"></span></td>
+																											</tr>
+																											<tr>
+																												<td></td>
+																												<td>MAX</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="maxheartrateslide"></td>
+																												<td><span id="maxhr"></span></td>
+																											</tr>
+																											<tr>
+																												<td>Temperature</td>
+																												<td>MIN</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="mintemperatureslide"></td>
+																												<td><span id="mint"></span></td>
+																											</tr>
+																											<tr>
+																												<td></td>
+																												<td>MAX</td>
+																												<td> <input type="range" min="1" max="100" value="50" class="slider" id="maxtemperatureslide"></td>
+																												<td><span id="maxt"></span></td>
+																											</tr>
+																										</tbody>
+																								</table>
+																								</div>
+																							</div>
+																							<div class="modal-footer">
+																								<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+																								<button class="btn btn-primary">Save changes</button>
+																							</div>
+																						</div>
+																					</th>
+																			</tr>
+																		</tfoot>
+																			<tbody>
+																				<tr>
+																					<td>Heart Rate</td>
+																					<td>70 bpm</td>
+																				</tr>
+																				<tr>
+																					<td>Temperature</td>
+																					<td>37 C</td>
+																				</tr>
+																				<tr>
+																					<td>Position</td>
+																					<td>Back</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+
+
+
+														</div>
+													</div>
+
+
+
+
+
+												</div> <!-- /controls -->
+
+											</div> <!-- /control-group-->
+											</div>
+
+
+											<div class="tab-pane" id="addbed" >
+												<div class ="container" >
+													<div class ="row">
+                            {% for bed in beds_list %}
+												<div class = "span3" align ="center">
+ 												 <div class="widget widget-table action-table" >
+ 													 <div class="widget-header" > <i class="icon-medkit"></i>
+ 														 <h3>Add Bed</h3>
+
+ 													 </div>
+ 													 <!-- /widget-header -->
+ 													 <div class="widget-content" align = "center" id="bed">
+ 														 <img src="{% static 'img/bed.png'%}"/ >
+ 														 <table class="table " align ="center">
+                               <thead>
+                                 <tr>
+
+  						                     <th></th>
+                                   </tr>
+                                 </thead>
+                                 <tbody>
+    															 <tr>
+
+    																 <td>Status:</td>
+                                     </tr>
+ 															 <tfoot align ="center" >
+ 																 <tr>
+ 																	 <th> <a class="btn bt" href="#addModal" role="button" data-toggle="modal"><i class="icon-plus-sign"></i> ADD</a>
+    <!-- Modal -->
+                                                    <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                      <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h3 id="myModalLabel">Add Bed</h3>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        <form id="add-bed" class="form-horizontal" method = "POST" action=".">
+                                 												 {% csrf_token %}
+                                                         <fieldset>
+                                                           <div class="control-group">
+                                                             <label class="control-label" for="bednumber">Bed #</label>
+                                                             <div class="controls">
+                                                               <input type="number" class="span1" name = "bednumber" id="{{ bed.pk }}" value="">
+                                                             </div> <!-- /controls -->
+
+
+
+
+                                                        </div> <!-- /control-group -->
+                                                        </fieldset>
+
+
+
+
+
+
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                                        <button type="button" class="btn btn-primary" onclick="addBed({{ bed.pk }});">Save</button>
+                                                      </div>
+                                                      </form>
+                                                    </div>
+
+
+
+
+
+                                   </th>
+ 																 </tr>
+ 															 </tfoot>
+ 														 </table>
+ 													 </div>
+ 												 </div>
+ 											 </div>
+
+                      {% endfor %}
+                      </div>
+
+											</div>
+
+
+
+											</div>
+
+
+
+
+
+				</div> <!-- /widget -->
+
+		    </div> <!-- /span8 -->
+
+	      </div> <!-- /row -->
+
+	    </div> <!-- /container -->
+
+	</div> <!-- /main-inner -->
+</div>
+</div>
+</div>
+</div> <!-- /main -->
+
+
+
+
+
+
+
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12"> Uno Dos Mattress 2.0 &copy; 2019 <a href="#"></a>. </div>
+        <!-- /span12 -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /footer-inner -->
+</div>
+
+
+
+<script src="{% static 'js/jquery-1.7.2.min.js'%}"></script>
+
+<script src="{% static 'js/bootstrap.js'%}"></script>
+<script src="{% static 'js/base.js'%}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+function addBed(id){
+  var wew = "#"+id+"";
+  var bedNumber = $(wew).val();
+
+  	$.ajax({
+  		url: '/ajax/setBedAvailable/',
+  		data: {
+        "id":id,
+        "bedNumber":bedNumber,
+  		},
+  		dataType: 'json',
+  		success: function (data){
+        alert("Yipi");
+        updateBeds();
+  		}
+  	});
+}
+</script>
+
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+<h1> Add Doctor </h1>
+
+	<form method="POST"  action=".">
+		{% csrf_token %}
+		<p><label for="firstName"> First Name: </label><input type="text" name="firstName" value=" " required/> 
+		<p><label for="middleName"> Middle Name: </label><input type="text" name="middleName" value=" " required=/> 
+		<p><label for="lastName"> Last Name: </label><input type="text" name="lastName" value=" " required/> 	
+		<p><label for="contactNum"> Contact Number: </label><input type="number" name="contactNum" mINlength="8" maxlength="12" required>
+		<p><label for="username"> Username: </label><input type="text" name="username" value=" " required/>
+		<p><label for="password"> Password: </label><input type="password" name="password" required/> 	
+ 
+
+
+		<button type="Submit">Save</button>
+	</form>

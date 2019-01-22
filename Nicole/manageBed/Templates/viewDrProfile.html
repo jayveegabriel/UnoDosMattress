@@ -1,0 +1,34 @@
+<h1> View Doctor's Profile </h1>		
+
+
+{%if doctor_profile%}
+	<ul>
+	{%for doctor in doctor_profile%}
+	 First Name: <input type="text" value="{{doctor.firstName}}" disabled>  <br>
+	 Middle Name: <input type="text" value="{{doctor.middleName}}" disabled> <br>
+	 Last Name: <input type="text" value="{{doctor.lastName}}" disabled> <br>
+	 Contact Number: <input type="text" value="{{doctor.contactNum}}"> <br>
+	 Username: <input type="text" value= "{{doctor.username}}"> <br>
+	 
+	 <!-- PASSWORD !-->	
+	{%if patient.status == 1 %} 
+	<form method="POST"  action=".">
+		{% csrf_token %}
+
+		<input type="radio" name="status" value="1" checked> Alive <br>
+	 	<input type="radio" name="status" value="2"> Ded<br>
+
+	 	<button name="updateButton"> Update Status</button>
+ 	</form>
+
+ 	{%else%}
+ 	 <input type="radio" name="status" value="1"> Alive <br>
+ 	 <input type="radio" name="status" value="2" checked> Ded<br>
+
+ 	{%endif%}
+  <br>
+	{%endfor%}
+	</ul>
+{%else%}
+	No patient available
+{%endif%}

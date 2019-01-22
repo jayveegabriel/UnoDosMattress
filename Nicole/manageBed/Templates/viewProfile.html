@@ -1,0 +1,48 @@
+<h1> View Profile </h1>
+
+
+
+{%if patient_profile%}
+	<ul>
+	{%for patient in patient_profile%}
+	 {{patient.firstName}} <br>
+	 {{patient.middleName}} <br>
+	 {{patient.lastName}} <br>
+	 {{patient.birthDate}} <br>
+	 {{patient.age}} <br>
+	 {{patient.religion}} <br>
+	 {{patient.minTemp}} <br>
+	 {{patient.maxTemp}} <br>
+	 {{patient.minHeartRate}} <br>
+	 {{patient.maxHeartRate}} <br>
+	 <!--{{patient.doctor}} !-->
+
+	 <br>
+
+
+
+	{%if patient.status == 1 %} 
+	<form method="POST"  action=".">
+		{% csrf_token %}
+
+		<input type="radio" name="status" value="1" checked> Alive <br>
+	 	<input type="radio" name="status" value="2"> Ded<br>
+
+	 	<button name="updateButton"> Update Status</button>
+ 	</form>
+
+ 	{%else%}
+ 	 <input type="radio" name="status" value="1"> Alive <br>
+ 	 <input type="radio" name="status" value="2" checked> Ded<br>
+
+ 	{%endif%}
+  <br>
+	{%endfor%}
+	</ul>
+{%else%}
+	No patient available
+{%endif%}
+
+
+
+

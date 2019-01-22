@@ -1,0 +1,272 @@
+{% extends 'admin/usersbase.html' %}
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<div class="main">
+	<div class="main-inner">
+	    <div class="container">
+	      <div class="row">
+	      	<div class="span12">
+	      		<div class="widget ">
+	      			<div class="widget-header">
+	      				<i class="icon-group"></i>
+	      				<h3>Manage Users</h3>
+	  					</div> <!-- /widget-header -->
+					<div class="widget-content">
+						<div class="tabbable">
+							<ul class="nav nav-tabs">
+							  <li class="active">
+							    <a href="#viewusers" data-toggle="tab">View Users</a>
+							  </li>
+							  <li><a href="#adduser" data-toggle="tab">Add User</a></li>
+							</ul>
+
+							<br>
+
+							<div class="tab-content">
+                <!--Add patient --->
+                <!---View Patients -->
+								<div class="tab-pane active" id="viewusers" >
+
+										<fieldset>
+
+											<div class="control-group">
+												 <h3><i class="icon-eye-open"></i> View Users</h3>
+												 <br>
+
+												<div class="controls">
+													 <table class="table table-bordered" id="example">
+														 <thead>
+						                   <tr>
+
+																 <th>FIRST NAME</th>
+						                     <th>LAST NAME</th>
+																 <th>MIDDLE NAME</th>
+																 <th>USER TYPE</th>
+																 <th></th>
+						                   </tr>
+						                 </thead>
+														 <tbody>
+
+															 {% for user in users_list %}
+																 <tr>
+
+																 <td>{{ user.firstName }}</td>
+																	 <td>{{ user.lastName }}</td>
+																	 <td>{{ user.middleName }}</td>
+																	 <td>{{ user.userType }}</td>
+																	 <td><a role="button" href="{% url 'unodosmattress:viewusers' user.username  %}">Edit</a></td>
+																 </tr>
+
+															 {% endfor %}
+														 </tbody>
+													 </table>
+												</div> <!-- /controls -->
+
+											</div> <!-- /control-group-->
+											</div>
+
+											<div class="tab-pane" id="adduser">
+
+											 <form id="add-patient" class="form-horizontal" method = "POST" action=".">
+												 {% csrf_token %}
+												<fieldset>
+													<div class="control-group">
+
+														<div class="controls">
+															<h3><i class="icon-pencil"></i> User Information</h3>
+														</div>
+													</div>
+
+
+													<div class="control-group">
+														<label class="control-label" for="firstname">First Name</label>
+														<div class="controls">
+															<input required type="text" class="span4" name = "firstname" id="firstname" value="">
+														</div> <!-- /controls -->
+													</div> <!-- /control-group -->
+													<div class="control-group">
+														<label class="control-label" for="middlename">Middle Name</label>
+														<div class="controls">
+															<input required type="text" class="span4" name = "middlename" id="middlename" value="">
+														</div> <!-- /controls -->
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="lastname">Last Name</label>
+														<div class="controls">
+															<input required type="text" class="span4" name = "lastname" id="lastname" value="">
+														</div> <!-- /controls -->
+													</div> <!-- /control-group -->
+                          <div class="control-group">
+														<label class="control-label" for="contactnum">Contact Number</label>
+														<div class="controls">
+															<input required type="text" class="span2" name = "contactnum" id="contactnum" value="">
+														</div> <!-- /controls -->
+													</div>
+                          <div class="control-group">
+														<label class="control-label" for="radiobtns">User Type</label>
+																									<div class="controls">
+																										<div class="form-group">
+
+																										  <select class="form-control" id="userType">
+																										    <option>Select Type	</option>
+																										    <option>Doctor</option>
+																										    <option>Nurse</option>
+																										  <select>
+																										</div>
+																										</div>	<!-- /controls -->
+													</div> <!-- /control-group -->
+                          <br>
+                          <div class="control-group">
+														<div class="controls">
+															<h3><i class="icon-pencil"></i> Account Information</h3>
+														</div>
+													</div>
+                          <div class="control-group">
+														<label class="control-label" for="username">Username</label>
+														<div class="controls">
+															<input required type="text" class="span2" name = "username" id="username" value="">
+														</div> <!-- /controls -->
+														<p class= "error" id = "error"></p>
+													</div>
+                          <div class="control-group">
+														<label class="control-label" for="password">Password</label>
+														<div class="controls">
+															<input required type="password" class="span2" name = "password" id="password" value="">
+														</div> <!-- /controls -->
+													</div>
+                          <div class="control-group">
+														<label class="control-label" for="cpassword">Confirm Password</label>
+														<div class="controls">
+															<input required type="password" class="span2" name = "cpassword" id="cpassword" value="">
+														</div> <!-- /controls -->
+														 <p class = "error" id = "error2"></p>
+													</div>
+
+
+
+
+
+
+
+
+<!-- /control-group -->
+
+
+
+
+												</fieldset>
+												<br></br>
+												<div align = "center">
+													<button id="addButton" type="button" class="btn btn-primary">Add</button>
+													<button class="btn">Cancel</button>
+												</div> <!-- /form-actions -->
+
+											</form>
+
+											</div>
+
+
+
+											</div>
+										</div>
+
+
+
+
+
+
+				</div> <!-- /widget -->
+
+		    </div> <!-- /span8 -->
+
+	      </div> <!-- /row -->
+
+	    </div> <!-- /container -->
+
+	</div> <!-- /main-inner -->
+
+</div>
+</div> <!-- /main -->
+
+
+
+
+
+
+
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12"> Uno Dos Mattress 2.0 &copy; 2019 <a href="#"></a>. </div>
+        <!-- /span12 -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /footer-inner -->
+</div>
+
+
+
+<script src="{% static 'js/jquery-1.7.2.min.js'%}"></script>
+
+<script src="{% static 'js/bootstrap.js'%}"></script>
+<script src="{% static 'js/base.js'%}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+$("#addButton").click(function(){
+
+		userType = 	$( "#userType" ).val();
+		firstName = document.getElementById("firstname").value;
+		middleName = document.getElementById("middlename").value;
+		lastName = document.getElementById("lastname").value;
+		contactNum = document.getElementById("contactnum").value;
+		username = document.getElementById("username").value;
+		password = document.getElementById("password").value;
+		password2 = document.getElementById("cpassword").value;
+
+		$.ajax({
+			url: '/ajax/checkUser/',
+			data: {
+				'userType':userType,
+				'firstName':firstName,
+				'middleName':middleName,
+				'lastName':lastName,
+				'contactNum':contactNum,
+				'username':username,
+				'password':password,
+				'password2': password2
+			},
+			dataType: 'json',
+			success: function(data){
+				alert("NICE");
+				if (data.is_existing) {
+						document.getElementById("error").innerHTML = "Username is already Existing"
+						document.getElementById("password").value = "";
+						document.getElementById("cpassword").value = "";
+				}
+				else if (data.is_match == false){
+						document.getElementById("error2").innerHTML = "Passwords did not match"
+						document.getElementById("password").value = "";
+						document.getElementById("cpassword").value = "";
+				}
+				else{
+					 $(".error").remove();
+					 alert("Saved");
+					 location.reload();
+				}
+			}
+		});
+});
+</script>
+
+
+{% endblock content %}

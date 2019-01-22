@@ -1,0 +1,115 @@
+<h1>Add Patient</h1>
+	<form action="/home/" id="addPatient">
+		{% csrf_token %}
+		
+
+		<div id = "listOfDoctor">
+		
+		</div>
+
+		<button type="button" onclick="addButton()">Add</button>
+
+		<p><label for="firstName"> First Name: </label><input type="text" name="firstName" id = "firstName" required/> 
+		<p><label for="middleName"> Middle Name: </label><input type="text" name="middleName" id = "middleName" required=/> 
+		<p><label for="lastName"> Last Name: </label><input type="text" name="lastName" id="lastName" required/> 	
+		<p><label for="birthDate"> Birth Date: </label><input type="text" name="birthDate" value= {% now "Y-m-d" %} id="birthDate" required/> 
+		<select name="religion" id="religion">
+		  <option value="Roman Catholic">Roman Catholic</option>
+		  <option value="Islam">Islam</option>
+		  <option value="Jehova's Witness">Jehova's Witness</option>
+		  <option value="Hinduism">Hinduism</option>
+		  <option value="Buddhism">Buddhism</option>
+		</select>
+		<p><label for="minTemp"> Minimum Temperature: </label><input type="number" name="minTemp" id="minTemp" required/> 
+		<p><label for="maxTemp"> Maximum Temperature: </label><input type="number" name="maxTemp" id = "maxTemp" required/> 	
+		<p><label for="minHeartRate"> Minimum Heart Rate </label><input type="number" name="minHeartRate" id = "minHeartRate" required/> 
+		<p><label for="maxHeartRate"> Maximum Heart Rate </label><input type="number" name="maxHeartRate" id = "maxHeartRate" required/>
+		<p><label for="contactNum"> Contact Number: </label><input type="text" name="contactNum" min_length="7" id = "contactNum" required/> 
+		<p><label for="bedNumber"> Bed Number: </label><input type="number" name="bedNumber" id="bedNumber" required/>
+
+ 
+
+		<button type="button" onclick="passData()">Add</button>
+
+
+		<p id="demo"></p>
+	</form>
+
+
+	<script src= "https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	
+	<script>
+		doctors = new Array();
+		function addButton(){
+			var e = document.getElementById("doctors").value;
+			//var e = document.getElementById("doctors");
+			//var strUser = e.options[e.selectedIndex].text;
+			console.log(e);
+	    	doctors.push(e);
+	    	document.getElementById("demo").innerHTML = doctors;	
+		}
+
+	//function check(){
+	//	alert(doctors);
+	//	document.getElementById("addPatient").submit();
+	//}
+
+		function passData(){
+
+			firstName = document.getElementById("firstName").value;
+			middleName = document.getElementById("middleName").value;
+			lastName = document.getElementById("lastName").value;
+			birthDate = document.getElementById("birthDate").value;
+			religion = document.getElementById("religion").value;
+			minTemp = document.getElementById("minTemp").value;
+			maxTemp = document.getElementById("maxTemp").value;
+			minHeartRate = document.getElementById("minHeartRate").value;
+			maxHeartRate = document.getElementById("maxHeartRate").value;
+			contactNum = document.getElementById("contactNum").value;
+			bedNumber = document.getElementById("bedNumber").value;
+
+			$.ajax({
+				url: '/save/',
+				data: {
+					'doctors[]': doctors,
+					'firstName': firstName,
+					'middleName': middleName,
+					'lastName': lastName,
+					'birthDate': birthDate,
+					'religion': religion,
+					'minTemp': minTemp,
+					'maxTemp': maxTemp,
+					'minHeartRate': minHeartRate,
+					'maxHeartRate': maxHeartRate,
+					'contactNum': contactNum,
+					'bedNumber':bedNumber
+				},
+				dataType: 'json',
+				success: function (data){
+					console.log("yipi")
+				}
+			})
+		}
+
+		$(document).ready(function(){
+
+			$.ajax({
+				url: '/displayDoctors/',
+				data: {
+
+				},
+				dataType: 'json',
+				success: function(data){
+
+					console.log(data);
+					var wew = "<select name='doctors' id='doctors'>";
+
+					for(i = 0; i < data.length; i++){
+						wew += "<option value=" + data[i].idDoctor + ">"+data[i].firstName + "</option>";
+					}
+					wew += "</select>"
+					$("#listOfDoctor").html(wew)
+				}
+			});
+		});
+</script>

@@ -1,0 +1,64 @@
+<h1>Heart Rate Report</h1>
+
+<form action="." id="record">
+{% csrf_token %}
+ 	{%if patient_report%}
+
+	<select name="date" id ="date">
+		{%for record in patient_report%}
+			<option value="{{record.date}}"> {{record.date}} </option>
+		{%endfor%}
+		{%for record in patient_report%}
+			<input type="hidden" id="idPatient" name="idPatient" value="{{record.idPatient}}">
+		{%endfor%}
+	</select> <br> 
+	
+	Start Time: <input type="time" id="startTime" name="startTime"><br>
+	End Time: <input type="time" id="endTime" name="endTime"><br>
+
+	<button type="button" id="searchButton" name="searchButton" onclick="checker()"> Search </button>
+
+</form>
+
+<p name = "graph" id = "graph"> </p>
+{%else%}
+	No record available
+
+{%endif%} 
+
+
+<script src= "https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+
+	function checker(){
+		date = $( "#date" ).val();
+		id = document.getElementById("idPatient").value;
+		startTime = document.getElementById("startTime").value;
+		endTime = document.getElementById("endTime").value;
+		if (startTime > endTime){
+			alert("End time should be greater Start time.")
+		}
+		else{
+			alert("Form Submitted");
+
+			$.ajax({
+					url: '/getData/',
+					data: {
+						'id': id,
+						'date': date,
+						'startTime': startTime,
+						'endTime': endTime
+					},
+					dataType: 'json',
+					success: function(data){
+						if (data.check){
+							console.log(data);
+						}
+						else{
+							console.log("nooo");
+						}
+					}
+				});
+			}
+	}	
+</script>

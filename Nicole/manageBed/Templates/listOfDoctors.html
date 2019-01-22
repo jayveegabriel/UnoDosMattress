@@ -1,0 +1,12 @@
+<h1> List of Doctors </h1>
+
+{%if list_of_doctors%}
+	<ul>
+	{%for doctor in list_of_doctors%}
+	<li><a href="{{doctor.idDoctor}}/">  {{doctor.firstName}} {{doctor.lastName}} </a>
+	</li>
+	{%endfor%}
+	</ul>
+{%else%}
+	No doctor available
+{%endif%}

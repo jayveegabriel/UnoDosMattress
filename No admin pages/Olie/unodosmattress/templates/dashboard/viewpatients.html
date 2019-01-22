@@ -1,0 +1,148 @@
+{% extends 'dashboard/patientsbase.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+
+<div class="main">
+	<div class="main-inner">
+	    <div class="container">
+
+	      <div class="row">
+	      	<div class="span13">
+	      		<div class="widget " >
+	      			<div class="widget-header">
+	      				<i class="icon-user"></i>
+	      				<h3>View Patient: Name</h3>
+	  				</div> <!-- /widget-header -->
+					<div class="widget-content">
+
+            <div class ="container">
+              <div class = "row">
+                <div class ="span6">
+
+                </div>
+                <div class ="span6">
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+				</div> <!-- /widget -->
+
+		    </div> <!-- /span8 -->
+
+	      </div> <!-- /row -->
+
+	    </div> <!-- /container -->
+
+	</div>
+  <div class ="container" align ="center">
+
+   <a class="btn" href="{% url 'managepatients' %}"><i class="icon-arrow-left"></i> BACK</a>
+   <br></br>
+ </div><!-- /main-inner -->
+</div>
+</div> <!-- /main -->
+
+
+
+
+<div class="extra">
+
+	<div class="extra-inner">
+
+		<div class="container">
+
+			<div class="row">
+                    <div class="span3">
+                        <h4>
+                            About Free Admin Template</h4>
+                        <ul>
+                            <li><a href="javascript:;">EGrappler.com</a></li>
+                            <li><a href="javascript:;">Web Development Resources</a></li>
+                            <li><a href="javascript:;">Responsive HTML5 Portfolio Templates</a></li>
+                            <li><a href="javascript:;">Free Resources and Scripts</a></li>
+                        </ul>
+                    </div>
+                    <!-- /span3 -->
+                    <div class="span3">
+                        <h4>
+                            Support</h4>
+                        <ul>
+                            <li><a href="javascript:;">Frequently Asked Questions</a></li>
+                            <li><a href="javascript:;">Ask a Question</a></li>
+                            <li><a href="javascript:;">Video Tutorial</a></li>
+                            <li><a href="javascript:;">Feedback</a></li>
+                        </ul>
+                    </div>
+                    <!-- /span3 -->
+                    <div class="span3">
+                        <h4>
+                            Something Legal</h4>
+                        <ul>
+                            <li><a href="javascript:;">Read License</a></li>
+                            <li><a href="javascript:;">Terms of Use</a></li>
+                            <li><a href="javascript:;">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <!-- /span3 -->
+                    <div class="span3">
+                        <h4>
+                            Open Source jQuery Plugins</h4>
+                        <ul>
+                            <li><a href="">Open Source jQuery Plugins</a></li>
+                            <li><a href="">HTML5 Responsive Tempaltes</a></li>
+                            <li><a href="">Free Contact Form Plugin</a></li>
+                            <li><a href="">Flat UI PSD</a></li>
+                        </ul>
+                    </div>
+                    <!-- /span3 -->
+                </div> <!-- /row -->
+
+		</div> <!-- /container -->
+
+	</div> <!-- /extra-inner -->
+
+</div> <!-- /extra -->
+
+
+
+
+<div class="footer">
+
+	<div class="footer-inner">
+
+		<div class="container">
+
+			<div class="row">
+
+    			<div class="span12">
+    				&copy; 2013 <a href="#">Bootstrap Responsive Admin Template</a>.
+    			</div> <!-- /span12 -->
+
+    		</div> <!-- /row -->
+
+		</div> <!-- /container -->
+
+	</div> <!-- /footer-inner -->
+
+</div> <!-- /footer -->
+
+
+
+<script src="{% static 'js/jquery-1.7.2.min.js'%}"></script>
+
+<script src="{% static 'js/bootstrap.js'%}"></script>
+<script src="{% static 'js/base.js'%}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+{% endblock content %}

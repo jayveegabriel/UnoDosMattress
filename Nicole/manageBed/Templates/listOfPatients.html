@@ -1,0 +1,12 @@
+<h1> List of Patients</h1>
+
+{%if list_of_patient%}
+	<ul>
+	{%for patient in list_of_patient%}
+	<li><a href="{{patient.idPatient}}/">  {{patient.firstName}} {{patient.lastName}} </a>
+	</li>
+	{%endfor%}
+	</ul>
+{%else%}
+	No patient available
+{%endif%}

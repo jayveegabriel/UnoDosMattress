@@ -1,0 +1,419 @@
+{% extends 'dashboard/patientsbase.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+
+<div class="main">
+	<div class="main-inner">
+	    <div class="container">
+	      <div class="row">
+	      	<div class="span12">
+	      		<div class="widget ">
+	      			<div class="widget-header">
+	      				<i class="icon-user"></i>
+	      				<h3>Manage Patients</h3>
+	  					</div> <!-- /widget-header -->
+					<div class="widget-content">
+						<div class="tabbable">
+							<ul class="nav nav-tabs">
+							  <li class="active">
+							    <a href="#viewpatients" id="ViewPatientsButton" data-toggle="tab">View Patients</a>
+							  </li>
+							  <li><a href="#addpatient" data-toggle="tab">Add Patient</a></li>
+							</ul>
+
+							<br>
+
+							<div class="tab-content">
+                <!--Add patient --->
+                <!---View Patients -->
+								<div class="tab-pane active" id="viewpatients" >
+
+										<fieldset>
+
+											<div class="control-group">
+												 <h3><i class="icon-eye-open"></i> View Patient</h3>
+												 <br>
+
+												<div class="controls">
+													 <table class="table table-bordered" id="example">
+														 <thead >
+						                   <tr>
+
+						                   <th>Bed number</th>
+											                     <th>LAST NAME</th>
+											                     <th>FIRST NAME</th>
+																 <th>MIDDLE NAME</th>
+																 <th>STATUS</th>
+																 <th></th>
+						                   </tr>
+						                 </thead>
+														 <tbody id="bodyTable">
+															  {% for patient in patients_list %}
+																	 <tr>
+																		<td>{{ patient.bedNumber }}</td>
+																		<td>{{ patient.lastName }}</td>
+																		<td>{{ patient.firstName }}</td>
+																		<td>{{ patient.middleName }}</td>
+																		<td>{{ patient.status }}</td>
+																		<td><a role="button" href="{% url 'viewpatients' %}">Edit</a></td>
+																	</tr>
+
+															 {% endfor %}
+														 </tbody>
+													 </table>
+												</div> <!-- /controls -->
+
+											</div> <!-- /control-group-->
+											</div>
+
+											<div class="tab-pane" id="addpatient">
+
+											 <form id="add-patient" class="form-horizontal" method = "POST" action=".">
+												 {% csrf_token %}
+												<fieldset>
+													<div class="control-group">
+														<div class="controls">
+															<h3><i class="icon-pencil"></i> Patient Information</h3>
+														</div>
+													</div>
+													<div id = "listOfDoctor">
+														<select name="doctors" id="doctors">
+															{% for doctors in doctors_list %}
+																<option value="{{ doctors.idDoctor }}">{{ doctors.lastName }}</option>
+															{% endfor %}
+														</select>
+													</div>
+													<button type="button" id="assignDoctor">Assign Doctor</button>
+
+		<p id="demo"></p>
+														<div class="control-group">
+															<label class="control-label" for="bednumber">Bed #</label>
+															<div class="controls">
+																<div id="listOfBeds">
+																	<select name="bednumber" id="bednumber">
+																		{% for beds in beds_list %}
+																			<option value="{{ beds.idBeds }}">{{ beds.bedNumber }}</option>
+																		{% endfor %}
+																	</select>
+																</div>
+																<!-- <input required type="number" class="span1" name = "bednumber" id="bednumber" value=""> -->
+															</div> <!-- /controls -->
+														</div> <!-- /control-group -->
+													<div class="control-group">
+														<label class="control-label" for="firstname">First Name</label>
+														<div class="controls">
+															<input required type="text" class="span4" name = "firstname" id="firstname" value="">
+														</div> <!-- /controls -->
+													</div> <!-- /control-group -->
+													<div class="control-group">
+														<label class="control-label" for="lastname">Last Name</label>
+														<div class="controls">
+															<input required type="text" class="span4" name = "lastname" id="lastname" value="">
+														</div> <!-- /controls -->
+													</div> <!-- /control-group -->
+													<div class="control-group">
+														<label class="control-label" for="middlename">Middle Name</label>
+														<div class="controls">
+															<input required type="text" class="span4" name = "middlename" id="middlename" value="">
+														</div> <!-- /controls -->
+													</div>
+													<!-- div class="control-group">
+														<label class="control-label" for="religion">Religion</label>
+														<div class="controls">
+															<input type="text" class="span4" name = "religion" id="religion" value="">
+														</div>
+													</div> -->
+													<label class="control-label" for="religion">Religion</label>
+													<select name="religion" id="religion">
+													  <option value="Roman Catholic">Roman Catholic</option>
+													  <option value="Islam">Islam</option>
+													  <option value="Jehova's Witness">Jehova's Witness</option>
+													  <option value="Hinduism">Hinduism</option>
+													  <option value="Buddhism">Buddhism</option>
+													</select>
+													<div class="control-group">
+														<label class="control-label" for="birthday">Birthday</label>
+														<div class="controls">
+															<input required type="date" class="span2" name = "birthday" id="birthday" value="">
+														</div> <!-- /controls -->
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="birthday">Contact Number</label>
+														<div class="controls">
+															<input required type="text" class="span2" name = "contactnum" id="contactnum" value="">
+														</div> <!-- /controls -->
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="radiobtns">Heart Rate</label>
+																									<div class="controls">
+																										 <div class="input-prepend input-append">
+																												<span class="add-on">MIN</span>
+																												<input required class="span1" id="minhr" type="number">
+																											</div>
+
+																									</div>
+																										<!-- /controls -->
+													</div>
+													<div class="control-group">
+																									<div class="controls">
+																										 <div class="input-prepend input-append">
+																												<span class="add-on" style ="font-size: 12px">MAX</span>
+																												<input required class="span1" id="maxhr" type="number">
+																												<!--<span class="add-on">.00</span>-->
+																											</div>
+																									</div>
+																										<!-- /controls -->
+													</div> <!-- /control-group -->
+
+													<div class="control-group">
+														<label class="control-label" for="radiobtns">Temperature</label>
+																									<div class="controls">
+																										 <div class="input-prepend input-append">
+																												<span class="add-on">MIN</span>
+																												<input required class="span1" id="mint" type="number">
+																											</div>
+
+																									</div>
+																										<!-- /controls -->
+													</div>
+													<div class="control-group">
+																									<div class="controls">
+																										 	<div class="input-prepend input-append">
+																												<span class="add-on" style ="font-size: 12px">MAX</span>
+																												<input required class="span1" id="maxt" type="number">
+																												<!--<span class="add-on">.00</span>-->
+																											</div>
+																									</div>
+																										<!-- /controls -->
+													</div> <!-- /control-group -->
+
+													<div class="control-group">
+														<label class="control-label" for="radiobtns">Doctor(s)</label>
+																									<div class="controls">
+																										<div class="btn-group">
+																										<a class="btn btn-default" href="#">Select Doctor</a>
+																										<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+																										<ul class="dropdown-menu">
+																											<li><a href="#">Edit</a></li>
+																											<li><a href="#">Delete</a></li>
+																											<li><a href="#">Ban</a></li>
+																											<li class="divider"></li>
+																											<li><a href="#">Make admin</a></li>
+																										</ul>
+																									</div>
+																										</div>	<!-- /controls -->
+													</div> <!-- /control-group -->
+													<div class="control-group">
+
+
+													</div> <!-- /control-group -->
+
+
+
+
+												</fieldset>
+												<br></br>
+												<div align = "center">
+													<button type="button" id="addButton" class="btn btn-primary">Add</button>
+													<button class="btn">Cancel</button>
+												</div> <!-- /form-actions -->
+
+											</form>
+
+											</div>
+
+
+
+											</div>
+										</div>
+
+
+
+
+
+
+				</div> <!-- /widget -->
+
+		    </div> <!-- /span8 -->
+
+	      </div> <!-- /row -->
+
+	    </div> <!-- /container -->
+
+	</div> <!-- /main-inner -->
+
+</div> <!-- /main -->
+
+
+
+
+
+
+
+<div class="footer">
+
+	<div class="footer-inner">
+
+		<div class="container">
+
+			<div class="row">
+
+    			<div class="span12">
+    				&copy; 2013 <a href="#">Bootstrap Responsive Admin Template</a>.
+    			</div> <!-- /span12 -->
+
+    		</div> <!-- /row -->
+
+		</div> <!-- /container -->
+
+	</div> <!-- /footer-inner -->
+
+</div> <!-- /footer -->
+
+
+
+<script src="{% static 'js/jquery-1.7.2.min.js'%}"></script>
+
+<script src="{% static 'js/bootstrap.js'%}"></script>
+<script src="{% static 'js/base.js'%}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+
+doctors = new Array();
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
+		$("#assignDoctor").click(function(){
+			var e = document.getElementById("doctors").value;
+			alert(e);
+			//var e = document.getElementById("doctors");
+			//var strUser = e.options[e.selectedIndex].text;
+			console.log(e);
+				var isOkay = true;
+				for(var i = 0; i < doctors.length; i++){
+					if(doctors[i] == e){
+						isOkay = false;
+					}
+				}
+				if(isOkay){
+					doctors.push(e);
+				}
+				document.getElementById("demo").innerHTML = doctors;
+		});
+
+
+$("#addButton").click(function(){
+
+  var bednumber = $("#bednumber").val();
+  var firstname = $("#firstname").val();
+	var lastname = $("#lastname").val();
+	var middlename = $("#middlename").val();
+	var religion = $("#religion").val();
+	var birthday = $("#birthday").val();
+	var contactnum = $("#contactnum").val();
+	var minhr = $("#minhr").val();
+	var maxhr = $("#maxhr").val();
+	var mint = $("#mint").val();
+	var maxt = $("#maxt").val();
+	$.ajax({
+		url: '/ajax/addPatient/',
+		data: {
+			'doctors[]': doctors,
+			'firstName': firstname,
+			'middleName': middlename,
+			'lastName': lastname,
+			'birthDate': birthday,
+			'religion': religion,
+			'minTemp': mint,
+			'maxTemp': maxt,
+			'minHeartRate': minhr,
+			'maxHeartRate': maxhr,
+			'contactNum': contactnum,
+			'bedNumber':bednumber
+		},
+		dataType: 'json',
+		success: function (data){
+
+	    $("#firstname").val("");
+	    $("#lastname").val("");
+			$("#middlename").val("");
+			$("#religion").val("");
+			$("#birthday").val("");
+			$("#contactnum").val("");
+			$("#minhr").val("");
+		 	$("#maxhr").val("");
+			$("#mint").val("");
+			$("#maxt").val("");
+			doctors.length = 0;
+			alert("Success! A new patient has been added.");
+			updateBeds();
+
+		}
+	});
+
+});
+function updateBeds(){
+
+	$.ajax({
+		url: '/ajax/getAvailableBeds/',
+		data: {
+
+		},
+		dataType: 'json',
+		success: function (data){
+			alert("Nicole");
+
+			var wew = "<select name='bedNumber' id='bedNumber'>";
+			for(var i = 0; i < data.length; i++){
+				wew += "<option value='" + data[i].idBeds + "'>" + data[i].bedNumber+ "</option>";
+			}
+			wew += "</select>";
+			$("#listOfBeds").html(wew);
+		}
+	});
+}
+
+
+$("#ViewPatientsButton").click(function(){
+
+	$.ajax({
+		url: '/ajax/ajaxGetPatients/',
+		data: {
+
+		},
+		dataType: 'json',
+		success: function (data){
+			var wew = "<fieldset>" + "<div class='control-group'>" +
+					 "<h3><i class='icon-eye-open'></i>"+ "View Patient</h3>"+
+					 "<br><div class='controls'>"+
+						 "<table class='table table-bordered' id='example'><thead>"
+							+ "<tr><th>Bed number</th><th>LAST NAME</th><th>FIRST NAME</th>"+
+									 "<th>MIDDLE NAME</th><th>STATUS</th><th></th></tr>"+
+							 "</thead><tbody>";
+			for(var i = 0; i < data.length; i++){
+				wew += "<tr>";
+				wew += "<td>"+ data[i].bedNumber +"</td>";
+				wew += "<td>"+ data[i].lastName +"</td>";
+				wew += "<td>"+ data[i].firstName +"</td>";
+				wew += "<td>"+ data[i].middleName +"</td>";
+				wew += "<td>"+ data[i].status +"</td>";
+				wew += "<td>" + "<a role='button' href='" + {% url 'viewpatients' %} + "'>Edit</a></td>";
+				 wew += "</tr>";
+			}
+			wew += "</tbody>";
+			console.log(wew);
+
+		 $("#viewpatients").html(wew);
+		 $('#example').DataTable();
+		}
+	});
+});
+
+
+
+</script>
+
+
+{% endblock content %}

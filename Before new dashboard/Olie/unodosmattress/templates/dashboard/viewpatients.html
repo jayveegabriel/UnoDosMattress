@@ -1,0 +1,176 @@
+{% extends 'dashboard/patientsbase.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+
+<div class="main">
+	<div class="main-inner">
+	    <div class="container">
+
+	      <div class="row">
+	      	<div class="span13">
+	      		<div class="widget " >
+	      			<div class="widget-header">
+	      				<i class="icon-user"></i>
+	      				<h3>View Patient: Name</h3>
+	  				</div> <!-- /widget-header -->
+					<div class="widget-content">
+
+            <div class ="container">
+              <div class = "row">
+                <div class ="span12">
+									<div class = "container" align ="right">
+
+										<select  id="sel1"> Change Status:
+											<option>Select Status..	</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+										</select>
+									</div>
+
+                  <table class="table " >
+                    <thead >
+
+                      <tr>
+                        <th>PATIENT INFORMATION</th>
+                        <th></th>
+                        <th></th>
+                        <th>STATUS
+
+
+																							</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Bed #{{patient.bedNumber}}</td>
+                        <td>{{patient.lastName}}</td>
+                        <td>{{patient.firstName}}</td>
+                        <td>{{patient.middleName}}</td>
+                      </tr>
+                      <tr>
+
+                        <td>{{patient.religion}}</td>
+                        <td>{{patient.birthDate}}</td>
+                        <td>19</td>
+                        <td>{{patient.contactNum}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                  <div class ="span6">
+                  <table class="table table-bordered">
+                    <thead >
+                      <tr>
+
+                        <th>VITAL SIGNS</th>
+                        <th>MINIMUM</th>
+                        <th>MAXIMUM</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr>
+
+                        <td>Heart rate</td>
+                        <td><input type="number" value="{{patient.minHeartRate}}"></td>
+                        <td><input type="number" value="{{patient.maxHeartRate}}"></td>
+                      </tr>
+                      <tr>
+
+                        <td>Temperature</td>
+                        <td><input type="number" value="{{patient.minTemp}}"></td>
+                        <td><input type="number" value="{{patient.maxTemp}}"></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class ="span6">
+                <table class="table table-bordered">
+                  <thead >
+                    <tr>
+
+                      <th>DOCTORS</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr>
+
+                      <td>
+												{% for doctor in doctors %}
+													Dr. {{ doctor.Doctor.firstName}} {{ doctor.Doctor.lastName }}
+												{% endfor %}
+											</td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+                </div>
+
+              </div>
+            </div>
+
+
+				</div> <!-- /widget -->
+
+		    </div> <!-- /span8 -->
+
+	      </div> <!-- /row -->
+
+	    </div> <!-- /container -->
+
+	</div>
+  <div class ="container" align ="center">
+
+   <a class="btn" href="{% url 'unodosmattress:managepatients' %}"><i class="icon-arrow-left"></i> BACK</a>
+   <br></br>
+ </div><!-- /main-inner -->
+</div>
+
+ <!-- /main -->
+
+
+
+
+
+
+
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12"> Uno Dos Mattress 2.0 &copy; 2019 <a href="#"></a>. </div>
+        <!-- /span12 -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /footer-inner -->
+</div>
+
+
+
+
+<script src="{% static 'js/jquery-1.7.2.min.js'%}"></script>
+
+<script src="{% static 'js/bootstrap.js'%}"></script>
+<script src="{% static 'js/base.js'%}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+{% endblock content %}
